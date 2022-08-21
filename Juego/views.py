@@ -24,9 +24,9 @@ def juego(request):
         tiempoInicial = time.time()
     i+=1
 
-    nick = request.POST['nick']
-    genero = request.POST['genero']
-    respuestaElegida = request.POST['respuestaElegida']
+    nick = request.GET['nick']
+    genero = request.GET['genero']
+    respuestaElegida = request.GET['respuestaElegida']
 
     if respCorr == respuestaElegida:
         respuestasCorrectas+=1
@@ -46,7 +46,7 @@ def juego(request):
     
     respCorr = pregunta.respuestaCorrecta
 
-    if i != 5:
+    if i != 11:
         return render(request, 'juego.html',{'nick':nick, 'genero':genero, 'pregunta':pregunta, 
             'respuesta1':respuesta1, 'respuesta2':respuesta2, 'respuesta3':respuesta3, 'respuesta4':respuesta4})
 
@@ -75,5 +75,6 @@ def juego(request):
 
     usuariosOrdenados = Usuario.objects.all().order_by('-puntaje')[:10]
     posiciones = 0
+    
     return render(request,'puntuaciones.html',{'usuariosOrdenados':usuariosOrdenados, 'preguntasAcertadas':preguntasAcertadas, 
     'tiempoTotal':tiempoTotal, 'puntaje':puntaje, 'posiciones':posiciones})

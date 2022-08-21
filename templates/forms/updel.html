@@ -16,15 +16,13 @@
     {% endfor %}
 </ul>
 
-<form action= "{% url 'delete'%}" method="POST" style="margin: 15px;">
-    {% csrf_token %}
-    Ingrese el ID a borrar: <input type="text" mehod="POST" name="delete">
+<form action= "{% url 'delete'%}" method="GET" style="margin: 15px;">
+    Ingrese el ID a borrar: <input type="text" name="delete">
     <input type="submit" value="Borrar"/>
 </form>
 
-<form action= "{% url 'update'%}" method="POST" style="margin: 15px;">
-    {% csrf_token %}
-    Ingrese el ID a actualizar: <input type="text" mehod="POST" name="update"> 
+<form action= "{% url 'update'%}" method="GET" style="margin: 15px;">
+    Ingrese el ID a actualizar: <input type="text" name="update"> 
     <input type="submit" value="Actualizar"/>
 </form>
 

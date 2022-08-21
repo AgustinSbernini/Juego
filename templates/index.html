@@ -4,24 +4,24 @@
 
 {% block content %}
 <h1> Juego de Preguntas y Respuestas </h1>
-<form action= "{% url 'juego' %}" method="POST">
-    {% csrf_token %}
-    <label>Ingrese su Nick: </label><input type="text" name="nick">
+<form action= "{% url 'juego' %}" method="GET">
+    <label style="margin: 10px;">Ingrese su Nick: </label><input type="text" name="nick">
     <input type="hidden" name="respuestaElegida" value=" ">
+    <br>
+    <label style="margin: 10px;">Elija un genero:</label>
     <select name="genero">
         <option value="Historia">Historia</option>
         <option value="Geografia">Geografia</option>
     </select>
-    <input type="submit" value="Empezar a jugar" />
+    <br>
+    <input type="submit" value="Empezar a jugar" style= "margin: 10px 10px 10px 126px"/>
 </form>
 <hr>
 <h3> Utilizar Base de Datos </h3>
-<form action= "{% url 'create'%}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Crear Pregunta" />
+<form action= "{% url 'create'%}" method="GET">
+    <input type="submit" value="Crear Pregunta" style="margin: 5px;"/>
 </form>
-<form action= "{% url 'updel'%}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Actualizar o Borrar Pregunta" />
+<form action= "{% url 'updel'%}" method="GET">
+    <input type="submit" value="Actualizar o Borrar Pregunta" style="margin: 5px;"/>
 </form>
 {% endblock content %}

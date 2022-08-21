@@ -4,8 +4,7 @@
 
 {% block content %} 
 <h1> Actualizar Pregunta </h1>
-<form action= "{% url 'updateSuccess'%}" method="POST">
-    {% csrf_token %}
+<form action= "{% url 'updateSuccess'%}" method="GET">
     <ul>
         <li><label>ID: </label><input type="text" value= "{{ preguntaRecibida.id}}" name="id" readonly></li>
         <li><label>Pregunta: </label><input type="text" value= "{{ preguntaRecibida.pregunta }}" name="pregunta" size="50"></li>

@@ -8,12 +8,12 @@ def create(request):
     return render(request, 'forms/create.html',{'crear_form':crear_form})
 
 def success(request):
-    pregunta = request.POST['pregunta']
-    respuestaCorrecta = request.POST['respuestaCorrecta']
-    respuestaIncorrecta1 = request.POST['respuestaIncorrecta1']
-    respuestaIncorrecta2 = request.POST['respuestaIncorrecta2']
-    respuestaIncorrecta3 = request.POST['respuestaIncorrecta3']
-    genero = request.POST['genero']
+    pregunta = request.GET['pregunta']
+    respuestaCorrecta = request.GET['respuestaCorrecta']
+    respuestaIncorrecta1 = request.GET['respuestaIncorrecta1']
+    respuestaIncorrecta2 = request.GET['respuestaIncorrecta2']
+    respuestaIncorrecta3 = request.GET['respuestaIncorrecta3']
+    genero = request.GET['genero']
 
     modeloPregunta = PreguntasYRespuestas(
         pregunta = pregunta, respuestaCorrecta = respuestaCorrecta, respuestaIncorrecta1 = respuestaIncorrecta1, 
@@ -30,7 +30,7 @@ def updel(request):
     return render(request,'forms/updel.html',{'preguntasHistoria':preguntasHistoria, 'preguntasGeografia':preguntasGeografia})
 
 def delete(request):
-    idRecibido = request.POST['delete']
+    idRecibido = request.GET['delete']
     pregunta = PreguntasYRespuestas.objects.get(id = idRecibido)
     pregunta.delete()
 
@@ -38,19 +38,19 @@ def delete(request):
   
 
 def update(request):
-    idRecibido = request.POST['update']
+    idRecibido = request.GET['update']
     preguntaRecibida = PreguntasYRespuestas.objects.get(id = idRecibido)
 
     return render(request,'forms/update.html',{'preguntaRecibida':preguntaRecibida})
 
 def updateSuccess(request):
-    idRecibido = request.POST['id']
-    pregunta = request.POST['pregunta']
-    respuestaCorrecta = request.POST['respuestaCorrecta']
-    respuestaIncorrecta1 = request.POST['respuestaIncorrecta1']
-    respuestaIncorrecta2 = request.POST['respuestaIncorrecta2']
-    respuestaIncorrecta3 = request.POST['respuestaIncorrecta3']
-    genero = request.POST['genero']
+    idRecibido = request.GET['id']
+    pregunta = request.GET['pregunta']
+    respuestaCorrecta = request.GET['respuestaCorrecta']
+    respuestaIncorrecta1 = request.GET['respuestaIncorrecta1']
+    respuestaIncorrecta2 = request.GET['respuestaIncorrecta2']
+    respuestaIncorrecta3 = request.GET['respuestaIncorrecta3']
+    genero = request.GET['genero']
 
     preguntaActualizada = PreguntasYRespuestas.objects.get(id = idRecibido)
     

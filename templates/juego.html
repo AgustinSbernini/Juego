@@ -3,14 +3,13 @@
 {% block title %}Juego{% endblock title %}
 
 {% block content %}
-<h1>Espero que disfrute del nuevo {{nick}}</h1>
+<h1>Espero que disfrute del juego {{nick}}</h1>
 <h2>Genero elegido: {{genero}}</h2>
 <hr>
 
 <h1>{{pregunta.pregunta}}</h1>
 
-<form action="{% url 'juego' %}" method="POST" >
-    {% csrf_token %}
+<form action="{% url 'juego' %}" method="GET" >
     <input type="hidden" name="genero" value="{{genero}}">
     <input type="hidden" name="nick" value="{{nick}}">
     
