@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Pregunta Nueva{% endblock title %}
+
+{% block content %}
+<h1 style="margin: 50px 10px 10px 650px; "> Crear Pregunta Nueva </h1>
+<div style="display: flex; justify-content: center; align-items: center; width: 420px; border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin: 150px 3px 1px 600px;">
+
+    <form action= "{% url 'success'%}" method="POST" style="width: 400px;">
+        <table>
+        {% csrf_token %}
+        {{crear_form.as_table}}
+        </table>
+        <input type="submit" value="Enviar" style="margin: 15px 3px 1px 300px;"/>
+    </form>
+</div>
+{% endblock content %}

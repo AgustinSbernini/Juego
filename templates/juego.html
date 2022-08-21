@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Juego{% endblock title %}
+
+{% block content %}
+<h1>Espero que disfrute del nuevo {{nick}}</h1>
+<h2>Genero elegido: {{genero}}</h2>
+<hr>
+
+<h1>{{pregunta.pregunta}}</h1>
+
+<form action="{% url 'juego' %}" method="POST" >
+    {% csrf_token %}
+    <input type="hidden" name="genero" value="{{genero}}">
+    <input type="hidden" name="nick" value="{{nick}}">
+    
+    <p><input type="radio" name="respuestaElegida" value="{{respuesta1}}"/> {{respuesta1}} </p>
+    <p><input type="radio" name="respuestaElegida" value="{{respuesta2}}"/> {{respuesta2}} </p>
+    <p><input type="radio" name="respuestaElegida" value="{{respuesta3}}"/> {{respuesta3}} </p>
+    <p><input type="radio" name="respuestaElegida" value="{{respuesta4}}"/> {{respuesta4}} </p>
+
+    <input type="submit" value="Elegir respuesta">
+</form>
+{% endblock content %}

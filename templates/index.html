@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Preguntas y Respuestas{% endblock title %}
+
+{% block content %}
+<h1> Juego de Preguntas y Respuestas </h1>
+<form action= "{% url 'juego' %}" method="POST">
+    {% csrf_token %}
+    <label>Ingrese su Nick: </label><input type="text" name="nick">
+    <input type="hidden" name="respuestaElegida" value=" ">
+    <select name="genero">
+        <option value="Historia">Historia</option>
+        <option value="Geografia">Geografia</option>
+    </select>
+    <input type="submit" value="Empezar a jugar" />
+</form>
+<hr>
+<h3> Utilizar Base de Datos </h3>
+<form action= "{% url 'create'%}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Crear Pregunta" />
+</form>
+<form action= "{% url 'updel'%}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Actualizar o Borrar Pregunta" />
+</form>
+{% endblock content %}

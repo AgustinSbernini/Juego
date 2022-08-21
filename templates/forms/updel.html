@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Borrar o Actualizar Pregunta{% endblock title %}
+
+{% block content %} 
+<h1> Borrar o Actualizar Pregunta </h1>
+<ul>
+    <h2> Preguntass de Geografia: {{preguntasGeografia|length}} </h2>
+    {%for pregunta in preguntasGeografia%}
+        <li>ID: {{pregunta.id}} Pregunta: {{ pregunta.pregunta }}</li>
+    {% endfor %}
+
+    <h2> Preguntass de Historia: {{preguntasHistoria|length}} </h2>
+    {%for pregunta in preguntasHistoria%}
+        <li>ID: {{pregunta.id}} Pregunta: {{ pregunta.pregunta }}</li>
+    {% endfor %}
+</ul>
+
+<form action= "{% url 'delete'%}" method="POST" style="margin: 15px;">
+    {% csrf_token %}
+    Ingrese el ID a borrar: <input type="text" mehod="POST" name="delete">
+    <input type="submit" value="Borrar"/>
+</form>
+
+<form action= "{% url 'update'%}" method="POST" style="margin: 15px;">
+    {% csrf_token %}
+    Ingrese el ID a actualizar: <input type="text" mehod="POST" name="update"> 
+    <input type="submit" value="Actualizar"/>
+</form>
+
+{% endblock content %}

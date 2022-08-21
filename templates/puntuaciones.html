@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Puntuaciones{% endblock title %}
+
+{% block content %}
+<h2>Cantidad de respuestas correctas {{preguntasAcertadas}} y usted tardó {{tiempoTotal}} y su puntuacion fue de {{puntaje}}</h2>
+
+<hr>
+
+<h1> Puntuaciones de los jugadores </h1>
+
+<table>
+    <tr>
+        <th><strong> Nick </strong></th>
+        <th><strong> Preguntas Acertadas </strong></th>
+        <th><strong> Tiempo Utilizado </strong></th>
+        <th><strong> Puntuacion Final </strong></ths>
+    </tr>
+    
+    {% for usuario in usuariosOrdenados %}
+    <tr>
+        <th scope="col">{{ usuario.nick }}</th>
+        <th scope="col">{{ usuario.preguntasAcertadas }}/20</th>
+        <th scope="col">{{ usuario.tiempo }}</th>
+        <th scope="col">{{ usuario.puntaje }}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock content %}
