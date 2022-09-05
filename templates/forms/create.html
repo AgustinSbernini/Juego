@@ -3,9 +3,8 @@
 {% block title %}Crear Pregunta Nueva{% endblock title %}
 
 {% block content %}
-<h1 style="margin: 50px 10px 10px 650px; "> Crear Pregunta Nueva </h1>
-<div style="display: flex; justify-content: center; align-items: center; width: 420px; border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin: 150px 3px 1px 600px;">
-
+<h1 style="margin: 50px 10px 10px 550px; "> Crear Pregunta Nueva </h1>
+<div style="display: flex; justify-content: center; align-items: center; width: 420px; border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin: 150px 3px 1px 500px;">
     <form action= "{% url 'success'%}" method="GET" style="width: 400px;">
         <table>
         {{crear_form.as_table}}
@@ -13,4 +12,7 @@
         <input type="submit" value="Enviar" style="margin: 15px 3px 1px 300px;"/>
     </form>
 </div>
+<form action= "{% url 'index' %}" method="GET">
+    <input type="submit" value="Volver al inicio!" style="margin: 30px 15px 15px 800px;"/>
+</form>
 {% endblock content %}

@@ -5,6 +5,8 @@ class Usuario(models.Model):
     preguntasAcertadas = models.IntegerField(default=0)
     tiempo = models.CharField(max_length= 10, default = "00m 00s")
     puntaje = models.IntegerField(default=0)
+    posicion = models.IntegerField(default=0)
+    generoElegido = models.CharField(max_length= 10, default = "Historia")
 
     def __str__(self) -> str:
         return self.nick

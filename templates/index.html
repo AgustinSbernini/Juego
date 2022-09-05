@@ -7,16 +7,22 @@
 <form action= "{% url 'juego' %}" method="GET">
     <label style="margin: 10px;">Ingrese su Nick: </label><input type="text" name="nick">
     <input type="hidden" name="respuestaElegida" value=" ">
-    <br>
+    <br><br>
     <label style="margin: 10px;">Elija un genero:</label>
     <select name="genero">
         <option value="Historia">Historia</option>
         <option value="Geografia">Geografia</option>
     </select>
-    <br>
-    <input type="submit" value="Empezar a jugar" style= "margin: 10px 10px 10px 126px"/>
+    <br><br>
+    <input type="submit" value="Empezar a jugar" style= "margin: 0px 10px 10px 126px"/>
 </form>
+
+<form action= "{% url 'tablaPosiciones'%}" method="GET">
+    <input type="submit" value="Tabla de Posiciones" style="margin: 5px;"/>
+</form>
+
 <hr>
+
 <h3> Utilizar Base de Datos </h3>
 <form action= "{% url 'create'%}" method="GET">
     <input type="submit" value="Crear Pregunta" style="margin: 5px;"/>

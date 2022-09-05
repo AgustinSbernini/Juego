@@ -13,6 +13,11 @@ respuestasCorrectas = 0
 respCorr = 0
 tiempoInicial = 0
 tiempoActual = time.time()
+contarPosicion = 0
+def contadorPosicion():
+    global contarPosicion
+    contarPosicion += 1
+    return contarPosicion
 
 def juego(request):
     global i
@@ -20,6 +25,7 @@ def juego(request):
     global respCorr
     global contadorTiempo
     global tiempoInicial
+
     if i == 0:
         tiempoInicial = time.time()
     i+=1
@@ -30,6 +36,9 @@ def juego(request):
 
     if respCorr == respuestaElegida:
         respuestasCorrectas+=1
+        mensajeAciertoError = "Yay! La pregunta anterior la respondiste correctamente! :D"
+    else:
+        mensajeAciertoError = "Ouh! La pregunta anterior la respondiste incorrectamente! :C"
     
     preguntasSinUsar = PreguntasYRespuestas.objects.filter(genero=genero).filter(usada = 0)
     pregunta = random.choice(preguntasSinUsar)
@@ -48,10 +57,11 @@ def juego(request):
 
     if i != 11:
         return render(request, 'juego.html',{'nick':nick, 'genero':genero, 'pregunta':pregunta, 
-            'respuesta1':respuesta1, 'respuesta2':respuesta2, 'respuesta3':respuesta3, 'respuesta4':respuesta4})
+            'respuesta1':respuesta1, 'respuesta2':respuesta2, 'respuesta3':respuesta3, 'respuesta4':respuesta4,
+            'mensajeAciertoError':mensajeAciertoError, 'i2':i - 1,'i':i ,'respuestasCorrectas':respuestasCorrectas})
 
 
-    resetPregunta = PreguntasYRespuestas.objects.filter(genero=genero).filter(usada = 1)
+    resetPregunta = PreguntasYRespuestas.objects.filter(usada = 1)
     for preg in resetPregunta:
         preg.usada = 0
         preg.save()
@@ -70,11 +80,22 @@ def juego(request):
     preguntasAcertadas = respuestasCorrectas
     respuestasCorrectas = 0
 
-    usuario = Usuario(nick=nick, preguntasAcertadas=preguntasAcertadas, tiempo=str(tiempoTotal), puntaje=puntaje)
+    usuario = Usuario(nick=nick, preguntasAcertadas=preguntasAcertadas, tiempo=str(tiempoTotal), puntaje=puntaje, generoElegido = genero)
     usuario.save()
 
     usuariosOrdenados = Usuario.objects.all().order_by('-puntaje')[:10]
-    posiciones = 0
+        
+    for user in usuariosOrdenados:
+        user.posicion = contadorPosicion()
     
     return render(request,'puntuaciones.html',{'usuariosOrdenados':usuariosOrdenados, 'preguntasAcertadas':preguntasAcertadas, 
-    'tiempoTotal':tiempoTotal, 'puntaje':puntaje, 'posiciones':posiciones})
+    'tiempoTotal':tiempoTotal, 'puntaje':puntaje, 'mensajeAciertoError':mensajeAciertoError,'juego':1})
+
+def tablaPosiciones(request):
+    usuariosOrdenados = Usuario.objects.all().order_by('-puntaje')[:10]
+    for user in usuariosOrdenados:
+        user.posicion = contadorPosicion()
+
+    return render(request,'puntuaciones.html',{'usuariosOrdenados':usuariosOrdenados, 'juego':0})
+    
+

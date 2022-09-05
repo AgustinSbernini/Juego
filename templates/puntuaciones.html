@@ -3,29 +3,39 @@
 {% block title %}Puntuaciones{% endblock title %}
 
 {% block content %}
+{% if juego == 1 %}
+
+<h3> {{mensajeAciertoError}} </h3>
 <h2>Cantidad de respuestas correctas {{preguntasAcertadas}} y usted tardó {{tiempoTotal}} y su puntuacion fue de {{puntaje}}</h2>
 
 <hr>
-
+{% endif %}
 <h1> Puntuaciones de los mejores jugadores </h1>
 
 <table>
     <tr>
-        <th><strong> Nick </strong></th>
+        <th><strong> Posicion </strong></th>
+        <th><strong> Nick Jugadores </strong></th>
         <th><strong> Preguntas Acertadas </strong></th>
         <th><strong> Tiempo Utilizado </strong></th>
         <th><strong> Puntuacion Final </strong></ths>
+        <th><strong> Genero Elegido </strong></ths>
     </tr>
     
     {% for usuario in usuariosOrdenados %}
     <tr>
+        <th scope="col">{{ usuario.posicion }}</th>
         <th scope="col">{{ usuario.nick }}</th>
         <th scope="col">{{ usuario.preguntasAcertadas }}/10</th>
         <th scope="col">{{ usuario.tiempo }}</th>
         <th scope="col">{{ usuario.puntaje }}</th>
+        <th scope="col">{{ usuario.generoElegido }}</th>
     </tr>
     {% endfor %}
 </table>
 
+<form action= "{% url 'index' %}" method="GET">
+    <input type="submit" value="Volver a jugar!" style="margin: 30px 15px 15px 600px;"/>
+</form>
 
 {% endblock content %}

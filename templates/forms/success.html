@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} {{proviene}} correctamente {% endblock title %}
+
+{% block content %} 
+<h2> La pregunta fue {{proviene}} con exito </h2>
+
+<ul>
+    <li>ID: {{pregunta.id}}</li>
+    <li>Pregunta: {{pregunta.pregunta}}</li>
+    <li>Respuesta Correcta: {{pregunta.respuestaCorrecta}}</li>
+    <li>Respuesta Incorrecta: {{pregunta.respuestaIncorrecta1}}</li>
+    <li>Respuesta Incorrecta: {{pregunta.respuestaIncorrecta2}}</li>
+    <li>Respuesta Incorrecta: {{pregunta.respuestaIncorrecta3}}</li>
+    <li>Genero: {{pregunta.genero}}</li>
+</ul>
+<form action= "{% url 'create'%}" method="GET">
+    <input type="submit" value="Crear Pregunta" style="margin: 10px;"/>
+</form>
+<form action= "{% url 'updel'%}" method="GET">
+    <input type="submit" value="Actualizar o Borrar Pregunta" style="margin: 10px;"/>
+</form>
+<form action= "{% url 'index' %}" method="GET">
+    <input type="submit" value="Volver al inicio!" style="margin: 10px;"/>
+</form>
+{% endblock content %}

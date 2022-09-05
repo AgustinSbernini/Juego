@@ -20,7 +20,8 @@ def success(request):
         respuestaIncorrecta2 = respuestaIncorrecta2, respuestaIncorrecta3 = respuestaIncorrecta3, genero = genero)
     modeloPregunta.save()
     
-    return HttpResponse(f'{pregunta}/{respuestaCorrecta}/{respuestaIncorrecta1}/{respuestaIncorrecta2}/{respuestaIncorrecta3}/{genero}')
+    proviene = "creada"
+    return render(request, 'forms/success.html', {'pregunta': modeloPregunta, 'proviene':proviene})
 
 
 def updel(request):
@@ -33,8 +34,8 @@ def delete(request):
     idRecibido = request.GET['delete']
     pregunta = PreguntasYRespuestas.objects.get(id = idRecibido)
     pregunta.delete()
-
-    return HttpResponse(f"La pregunta con id: {idRecibido} fue borrada exitosamente.")
+    proviene = "eliminada"
+    return render(request, 'forms/success.html', {'pregunta': pregunta, 'proviene':proviene})
   
 
 def update(request):
@@ -63,4 +64,6 @@ def updateSuccess(request):
     
     preguntaActualizada.save()
 
-    return HttpResponse(f"La pregunta con id: {idRecibido} fue actualizada exitosamente.")
+    proviene = "actualizada"
+
+    return render(request, 'forms/success.html', {'pregunta': preguntaActualizada, 'proviene':proviene})

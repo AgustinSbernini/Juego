@@ -3,21 +3,37 @@
 {% block title %}Juego{% endblock title %}
 
 {% block content %}
-<h1>Espero que disfrute del juego {{nick}}</h1>
-<h2>Genero elegido: {{genero}}</h2>
+
+<h1 style="display: flex; justify-content: center; align-items: center;" >Espero que disfrute del juego {{nick}}</h1>
+<h2 style="display: flex; justify-content: center; align-items: center;" >Genero elegido: {{genero}}</h2>
+
 <hr>
 
-<h1>{{pregunta.pregunta}}</h1>
+{%if i2 == 0%}
+<h3 style="display: flex; justify-content: center; align-items: center;"> Go go go! A responder rapido que el tiempo corre! </h3>
+{% else %}
+<h3 style="display: flex; justify-content: center; align-items: center;"> {{mensajeAciertoError}} </h3>
+{% endif %}
+<h4 style="display: flex; justify-content: center; align-items: center;"> Preguntas respondidas: {{i}}/10 </h4>
+<h4 style="display: flex; justify-content: center; align-items: center;"> Preguntas correctas: {{respuestasCorrectas}}/{{i2}} </h4>
 
-<form action="{% url 'juego' %}" method="GET" >
-    <input type="hidden" name="genero" value="{{genero}}">
-    <input type="hidden" name="nick" value="{{nick}}">
-    
-    <p><input type="radio" name="respuestaElegida" value="{{respuesta1}}"/> {{respuesta1}} </p>
-    <p><input type="radio" name="respuestaElegida" value="{{respuesta2}}"/> {{respuesta2}} </p>
-    <p><input type="radio" name="respuestaElegida" value="{{respuesta3}}"/> {{respuesta3}} </p>
-    <p><input type="radio" name="respuestaElegida" value="{{respuesta4}}"/> {{respuesta4}} </p>
+<hr>
 
-    <input type="submit" value="Elegir respuesta">
-</form>
+<h1 style="display: flex; justify-content: center; align-items: center;">{{pregunta.pregunta}}</h1>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <form action="{% url 'juego' %}" method="GET" >
+        <input type="hidden" name="genero" value="{{genero}}">
+        <input type="hidden" name="nick" value="{{nick}}">
+        <input type="hidden" name="respCorr" value="{{respCorr}}">
+
+        <p style="padding-right: 365px"><input type="radio" name="respuestaElegida" value="{{respuesta1}}"/> {{respuesta1}} </p>
+        <p style="padding-right: 365px"><input type="radio" name="respuestaElegida" value="{{respuesta2}}"/> {{respuesta2}} </p>
+        <p style="padding-right: 365px"><input type="radio" name="respuestaElegida" value="{{respuesta3}}"/> {{respuesta3}} </p>
+        <p style="padding-right: 365px"><input type="radio" name="respuestaElegida" value="{{respuesta4}}"/> {{respuesta4}} </p>
+
+        <input type="submit" value="Elegir respuesta">
+    </form>
+</div>
+
 {% endblock content %}

@@ -13,8 +13,10 @@
         <li><label>Respuesta Incorrecta2: </label><input type="text" value= "{{preguntaRecibida.respuestaIncorrecta2}}" name="respuestaIncorrecta2"></li>
         <li><label>Respuesta Incorrecta3: </label><input type="text" value= "{{preguntaRecibida.respuestaIncorrecta3}}" name="respuestaIncorrecta3"></li>
         <li><label>Genero: <input type="text" value= "{{preguntaRecibida.genero}}" name="genero" ></li>
-        <input type="submit" value="Actualizar" style="margin: 15px">
+        <input type="submit" value="Actualizar" style="margin: 10px 10px 10px 260px;">
     </ul>
 </form>
-
+<form action= "{% url 'index' %}" method="GET">
+    <input type="submit" value="Volver al inicio!" style="margin: 0px 10px 10px 300px;"/>
+</form>
 {% endblock content %}
